@@ -175,7 +175,7 @@ footer a:hover{color:yellow}
 <form id="eventForm">
 
 <label>Event Title:</label>
-<input type="text" name="event_title" required>
+<input type="text" name="event_title" placeholder="Suitable Event Title" required>
 
 <label>Event Type:</label>
 <select name="event_type" required>
@@ -191,20 +191,20 @@ footer a:hover{color:yellow}
 <option value="">Select</option>
 <option>8-10</option>
 <option>10-12</option>
-<option>8-12</option>
 <option>1-3</option>
+<option>8-12</option>
 <option>Full Day</option>
 </select>
 
 <label>Student Capacity:</label>
-<input type="text" name="capacity" required pattern="[0-9]+" 
+<input type="text" name="capacity" placeholder="Numbers only" required pattern="[0-9]+" 
 oninput="this.value=this.value.replace(/[^0-9]/g,'')" minlength="1" maxlength="3">
 
 <label>Department:</label>
-<input type="text" name="department" required>
+<input type="text" name="department" placeholder="Faculty Department or Club Name" required>
 
-<label>Faculty Code & Name (3 Entries):</label>
-<input type="text" name="faculty1" required>
+<label>Coordinator Faculty Code & Name (Max. 3 Entries):</label>
+<input type="text" placeholder="Faculty Code and Name in ALL CAPS" name="faculty1" required>
 <input type="text" name="faculty2">
 <input type="text" name="faculty3">
 
@@ -215,12 +215,12 @@ oninput="this.value=this.value.replace(/[^0-9]/g,'')" minlength="1" maxlength="3
 <textarea name="description" rows="4" required></textarea>
 
 <label>SD Goals Mapping: (Use comma for separation)</label>
-<input type="text" name="sd_goals" required>
+<input type="text" name="sd_goals" placeholder="Numbers only" required>
 
-<label>Student Volunteers (3 Entries):</label>
-<input type="text" name="volunteer1">
-<input type="text" name="volunteer2">
-<input type="text" name="volunteer3">
+<label>Student Volunteers (Max. 3 Entries):</label>
+<input type="text" name="volunteer1" placeholder="Register Number with Name in ALL CAPS">
+<input type="text" name="volunteer2" placeholder="Register Number with Name in ALL CAPS">
+<input type="text" name="volunteer3" placeholder="Register Number with Name in ALL CAPS">
 
 <hr>
 
@@ -241,7 +241,7 @@ Click Here to Upload
 <hr>
 
 <p>
-Join WhatsApp Group:<br>
+WhatsApp Group:<br>
 <a href="https://chat.whatsapp.com/Gx2fXmT9E29BgdN7N9f7XF" target="_blank">
 Click Here to Join Group
 </a>
@@ -264,12 +264,12 @@ Click Here to Join Group
 </select>
 
 <div id="remunerationFields" class="hidden">
-<input type="text" name="account_holder" placeholder="Account Holder Name">
+<input type="text" name="account_holder" placeholder="Account Holder Name in ALL CAPS">
 <input type="text" name="account_number" placeholder="Account Number" pattern="[0-9]+" 
 oninput="this.value=this.value.replace(/[^0-9]/g,'')">
 <input type="text" name="bank_name" placeholder="Bank Name">
 <input type="text" name="branch_name" placeholder="Branch">
-<input type="text" name="ifsc_code" placeholder="IFSC Code">
+<input type="text" name="ifsc_code" placeholder="IFSC Code in ALL CAPS">
 </div>
 
 <div class="section-title">Transport Required?</div>
