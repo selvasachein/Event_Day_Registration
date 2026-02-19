@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SCOFT Event Day Registration</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<style>
+*{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+html,body{height:100%;margin:0}
+
+body{
+display:flex;
+flex-direction:column;
+background:linear-gradient(45deg,#FF9933,#FFFFFF,#138808);
+}
+
+header{
+display:grid;
+grid-template-columns:auto 1fr auto;
+align-items:center;
+padding:14px 24px;
+background:linear-gradient(45deg,#FF9933,#FFFFFF,#138808);
+box-shadow:0 4px 12px rgba(0,0,0,.3)
+}
+
+header h1{
+margin:0;
+text-align:center;
+font-size:28px;
+letter-spacing:2px;
+background:linear-gradient(90deg,red,orange,yellow,green,blue,indigo,violet);
+background-size:400%;
+-webkit-background-clip:text;
+color:transparent;
+animation:titleFlow 4s linear infinite;
+font-weight:bold
+}
+
+@keyframes titleFlow{
+from{background-position:400%}
+to{background-position:0%}
+}
+
+main{
+flex:1;
+padding:30px;
+display:flex;
+justify-content:center;
+}
+
+.form-container{
+width:95%;
+max-width:1000px;
+background:white;
+padding:25px;
+border-radius:12px;
+box-shadow:0 8px 20px rgba(0,0,0,.3);
+}
+
+h2{text-align:center;color:darkblue}
+label{font-weight:bold}
+
+input,select,textarea{
+width:100%;
+padding:8px;
+margin:6px 0 15px 0;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+textarea{resize:vertical}
+
+button{
+width:100%;
+padding:12px;
+background:linear-gradient(135deg,mediumseagreen,seagreen);
+color:white;
+border:none;
+border-radius:25px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{transform:scale(1.03)}
+
+.hidden{display:none}
+
+.section-title{
+margin-top:20px;
+color:darkred;
+font-weight:bold;
+}
+
+.popup{
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:rgba(0,0,0,.6);
+display:flex;
+justify-content:center;
+align-items:center;
+visibility:hidden;
+opacity:0;
+transition:.4s;
+}
+
+.popup.active{
+visibility:visible;
+opacity:1;
+}
+
+.popup-box{
+background:white;
+padding:30px;
+border-radius:15px;
+text-align:center;
+animation:pop 0.4s ease;
+}
+
+@keyframes pop{
+0%{transform:scale(0.5)}
+100%{transform:scale(1)}
+}
+
+footer{
+text-align:center;
+padding:14px;
+background:linear-gradient(135deg,mediumvioletred,deeppink);
+color:white;
+font-weight:bold;
+}
+footer a{color:white;text-decoration:none}
+footer a:hover{color:yellow}
+</style>
+</head>
+
+<body>
+
+<header>
+<div></div>
+<h1>SCOFT Event Day Registration</h1>
+<div></div>
+</header>
+
+<main>
+<div class="form-container">
+<h2>Event Registration Form</h2>
+
+<form id="eventForm">
+
+<label>Event Title:</label>
+<input type="text" name="event_title" required>
+
+<label>Event Type:</label>
+<select name="event_type" required>
+<option value="">Select</option>
+<option>Seminar</option>
+<option>Workshop</option>
+<option>Guest Lecture</option>
+<option>Hands-on</option>
+</select>
+
+<label>Event Time:</label>
+<select name="event_time" required>
+<option value="">Select</option>
+<option>8-10</option>
+<option>10-12</option>
+<option>8-12</option>
+<option>1-3</option>
+<option>Full Day</option>
+</select>
+
+<label>Student Capacity:</label>
+<input type="text" name="capacity" required pattern="[0-9]+" 
+oninput="this.value=this.value.replace(/[^0-9]/g,'')" minlength="1" maxlength="3">
+
+<label>Department:</label>
+<input type="text" name="department" required>
+
+<label>Faculty Code & Name (3 Entries):</label>
+<input type="text" name="faculty1" required>
+<input type="text" name="faculty2">
+<input type="text" name="faculty3">
+
+<label>Resource Person (Name, Designation, Company):</label>
+<input type="text" name="resource_person" required>
+
+<label>Event Description:</label>
+<textarea name="description" rows="4" required></textarea>
+
+<label>SD Goals Mapping: (Use comma for separation)</label>
+<input type="text" name="sd_goals" required>
+
+<label>Student Volunteers (3 Entries):</label>
+<input type="text" name="volunteer1">
+<input type="text" name="volunteer2">
+<input type="text" name="volunteer3">
+
+<hr>
+
+<p>
+Upload Resource Person Photo in Google Drive:<br>
+<a href="https://drive.google.com/drive/u/0/folders/1ag8Sf3BW1osxsFTiY8c9q4vtbTMAF_X4" target="_blank">
+Click Here to Upload
+</a>
+</p>
+
+<label>Image Uploaded?</label>
+<select id="gdriveUpload" name="gdrive_upload_status" required>
+<option value="">Select</option>
+<option>Yes</option>
+<option>No</option>
+</select>
+
+<hr>
+
+<p>
+Join SCOFT WhatsApp Group:<br>
+<a href="https://chat.whatsapp.com/Gx2fXmT9E29BgdN7N9f7XF" target="_blank">
+Click Here to Join Group
+</a>
+</p>
+
+<label>Joined WhatsApp Group?</label>
+<select name="whatsapp_joined" required>
+<option value="">Select</option>
+<option>Yes</option>
+<option>No</option>
+</select>
+
+<hr>
+
+<div class="section-title">Remuneration Required?</div>
+<select id="remuneration" name="remuneration" onchange="toggleRemuneration()" required>
+<option value="">Select</option>
+<option>Yes</option>
+<option>No</option>
+</select>
+
+<div id="remunerationFields" class="hidden">
+<input type="text" name="account_holder" placeholder="Account Holder Name">
+<input type="text" name="account_number" placeholder="Account Number" pattern="[0-9]+" 
+oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+<input type="text" name="bank_name" placeholder="Bank Name">
+<input type="text" name="branch_name" placeholder="Branch">
+<input type="text" name="ifsc_code" placeholder="IFSC Code">
+</div>
+
+<div class="section-title">Transport Required?</div>
+<select id="transport" name="transport" onchange="toggleTransport()" required>
+<option value="">Select</option>
+<option>Yes</option>
+<option>No</option>
+</select>
+
+<div id="transportFields" class="hidden">
+<input type="text" name="pickup_address" placeholder="Pickup Address">
+<input type="time" name="pickup_time" placeholder="Pickup Time">
+<input type="text" name="contact_number" placeholder="Contact Number" pattern="[0-9]+" 
+oninput="this.value=this.value.replace(/[^0-9]/g,'')" minlength="10" maxlength="10">
+</div>
+
+<button type="submit">Submit Registration</button>
+
+</form>
+</div>
+</main>
+
+<div class="popup" id="successPopup">
+<div class="popup-box">
+<h2>🎉 Registration Completed Successfully!</h2>
+<p>Thank you for registering.</p>
+<button onclick="closePopup()">Close</button>
+</div>
+</div>
+
+<footer>
+Designed & Developed by Dr.R.Selvakumar, Associate Professor, Department of AIML © 2026 
+</footer>
+
+<script>
+emailjs.init("zxN63GZ44o8s6xbo8");
+
+function toggleRemuneration(){
+document.getElementById("remunerationFields").style.display =
+document.getElementById("remuneration").value==="Yes"?"block":"none";
+}
+
+function toggleTransport(){
+document.getElementById("transportFields").style.display =
+document.getElementById("transport").value==="Yes"?"block":"none";
+}
+
+document.getElementById("eventForm").addEventListener("submit",function(e){
+e.preventDefault();
+
+if(document.getElementById("gdriveUpload").value!=="Yes"){
+alert("Please upload image in Google Drive before submitting.");
+return;
+}
+
+emailjs.sendForm("service_mnyljgq","template_j8e9jrk",this)
+.then(()=>{
+document.getElementById("successPopup").classList.add("active");
+this.reset();
+document.getElementById("remunerationFields").style.display="none";
+document.getElementById("transportFields").style.display="none";
+})
+.catch((error)=>{
+alert("Error sending email");
+console.log(error);
+});
+});
+
+function closePopup(){
+document.getElementById("successPopup").classList.remove("active");
+}
+</script>
+
+</body>
+</html>
