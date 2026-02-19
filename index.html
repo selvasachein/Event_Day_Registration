@@ -21,28 +21,42 @@ header{
 display:grid;
 grid-template-columns:auto 1fr auto;
 align-items:center;
-padding:14px 24px;
+padding:12px 30px;
 background:linear-gradient(45deg,#FF9933,#FFFFFF,#138808);
-box-shadow:0 4px 12px rgba(0,0,0,.3)
+box-shadow:0 4px 12px rgba(0,0,0,.3);
 }
 
 header h1{
 margin:0;
 text-align:center;
 font-size:28px;
+font-weight:bold;
 letter-spacing:2px;
-background:linear-gradient(90deg,red,orange,yellow,green,blue,indigo,violet);
+background:linear-gradient(90deg,
+red,orange,yellow,green,blue,indigo,violet);
 background-size:400%;
 -webkit-background-clip:text;
 color:transparent;
-animation:titleFlow 4s linear infinite;
-font-weight:bold
+animation:flowText 4s linear infinite;
 }
 
-@keyframes titleFlow{
-from{background-position:400%}
-to{background-position:0%}
+@keyframes flowText{
+0%{background-position:400% 0}
+100%{background-position:0 0}
 }
+
+.logo-left img,
+.logo-right img{
+height:75px;
+width:auto;
+transition:0.3s;
+}
+
+.logo-left img:hover,
+.logo-right img:hover{
+transform:scale(1.05);
+}
+
 
 main{
 flex:1;
@@ -142,10 +156,17 @@ footer a:hover{color:yellow}
 <body>
 
 <header>
-<div></div>
-<h1>SCOFT Event Day Registration</h1>
-<div></div>
+    <div class="logo-left">
+        <img src="logo.png" alt="SEC">
+    </div>
+
+    <h1>SCOFT Event Day Registration</h1>
+
+    <div class="logo-right">
+        <img src="silver.png" alt="Silver Jubilee Logo">
+    </div>
 </header>
+
 
 <main>
 <div class="form-container">
